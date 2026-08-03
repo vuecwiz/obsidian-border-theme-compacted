@@ -1,7 +1,8 @@
-const { Notice, Plugin, setIcon } = require("obsidian");
+const { Notice, Platform, Plugin, setIcon } = require("obsidian");
 
 const BORDER_THEME = "Border";
 const THEME_CLASS = "border-theme-compacted-theme";
+const MAC_WINDOW_BUTTON_Y = 12;
 
 module.exports = class BorderThemeCompactedPlugin extends Plugin {
   onload() {
@@ -50,6 +51,7 @@ module.exports = class BorderThemeCompactedPlugin extends Plugin {
 
   onunload() {
     this.closeRibbonMenu();
+    this.restoreMacWindowButtons();
     document.body.classList.remove(THEME_CLASS);
   }
 
@@ -60,7 +62,53 @@ module.exports = class BorderThemeCompactedPlugin extends Plugin {
   updateThemeState() {
     const isBorder = this.isBorderTheme();
     document.body.classList.toggle(THEME_CLASS, isBorder);
-    if (!isBorder) this.closeRibbonMenu();
+    if (isBorder) {
+      this.alignMacWindowButtons();
+    } else {
+      this.closeRibbonMenu();
+      this.restoreMacWindowButtons();
+    }
+  }
+
+  getMacWindow() {
+    if (!Platform.isMacOS) return null;
+
+    try {
+      return require("electron").remote?.getCurrentWindow?.() ?? null;
+    } catch {
+      return null;
+    }
+  }
+
+  alignMacWindowButtons() {
+    const currentWindow = this.getMacWindow();
+    if (!currentWindow?.getWindowButtonPosition || !currentWindow?.setWindowButtonPosition) {
+      return;
+    }
+
+    const position = currentWindow.getWindowButtonPosition();
+    if (!position || !Number.isFinite(position.x) || !Number.isFinite(position.y)) return;
+
+    if (this.originalMacWindowButtonY == null) {
+      this.originalMacWindowButtonY = position.y;
+    }
+
+    if (position.y !== MAC_WINDOW_BUTTON_Y) {
+      currentWindow.setWindowButtonPosition({ x: position.x, y: MAC_WINDOW_BUTTON_Y });
+    }
+  }
+
+  restoreMacWindowButtons() {
+    if (this.originalMacWindowButtonY == null) return;
+
+    const currentWindow = this.getMacWindow();
+    const position = currentWindow?.getWindowButtonPosition?.();
+    if (position && Number.isFinite(position.x)) {
+      currentWindow.setWindowButtonPosition({
+        x: position.x,
+        y: this.originalMacWindowButtonY,
+      });
+    }
   }
 
   getVisibleRibbonItems() {
