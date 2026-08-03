@@ -1,7 +1,7 @@
 {
   "id": "border-theme-compacted",
   "name": "Border Theme Compacted",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "minAppVersion": "1.12.7",
   "description": "Compact the Border theme chrome and open Ribbon actions from a status-bar menu.",
   "author": "Wesley",
