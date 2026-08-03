@@ -23,6 +23,7 @@ The animation shows how to open the pop-up Ribbon menu with a left-click, use it
 - Reduces the outer workspace spacing from about 16px to 4px.
 - Uses a 36px title-bar grid with 32px tabs and buttons.
 - Aligns editor tabs, sidebar tabs, sidebar toggle buttons, the tab list, and the new-tab button.
+- Aligns native window controls with the 36px compact title bar: 36×36px controls on Windows/Linux and vertically centered traffic lights on macOS.
 - Compacts the original Ribbon to 36px wide with 32px action buttons.
 - Prevents Border's shadow frame from briefly flashing when the Ribbon is shown or hidden.
 - Prevents editor and sidebar tab rows from shifting upward after a tab is dragged.
@@ -41,6 +42,8 @@ this.app.customCss?.theme === "Border";
 Only when the active community theme is `Border` does the plugin add the `border-theme-compacted-theme` class to `body`. Every interface override in `styles.css` is scoped to that class.
 
 When another theme is selected, the plugin removes the class, closes the pop-up menu, hides its status-bar button, and restores the selected theme's own layout.
+
+On macOS, the plugin temporarily adjusts Electron's native traffic-light Y position while Border is active and restores the original position when the theme changes or the plugin unloads. On Windows and Linux, the equivalent alignment is handled entirely by theme-scoped CSS.
 
 ## Usage
 
@@ -95,6 +98,8 @@ assets/       GIF demos used by the READMEs
 - Obsidian 1.12.7 or later
 - Desktop only
 - Border theme
+
+Window-control alignment is platform-specific. The Windows/Linux buttons use Obsidian DOM selectors; macOS uses Electron's desktop-only window-button API with a guarded fallback when the API is unavailable.
 
 The plugin relies on the DOM structure of Border and Obsidian desktop. Future theme or Obsidian updates may require adjustments to its CSS selectors.
 
