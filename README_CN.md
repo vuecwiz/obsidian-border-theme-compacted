@@ -23,7 +23,7 @@
 - 将工作区外侧留白从约 16px 缩小到 4px。
 - 使用 36px 标题栏网格和 32px TAB、按钮。
 - 对齐主内容区 TAB、侧栏 TAB、侧栏收展按钮、标签列表和新建标签页按钮。
-- 将原生窗口按钮与 36px 紧凑标题栏对齐：Windows/Linux 使用 36×36px 控件，macOS traffic-light 垂直居中。
+- 将原生窗口按钮与 36px 紧凑标题栏对齐：Windows 控件高度设为 36px，macOS traffic-light 垂直居中。
 - 将展开后的原 Ribbon 缩小为 36px，功能按钮为 32px。
 - 避免显示或隐藏 Ribbon 时短暂出现 Border 阴影边框。
 - 防止拖拽主内容区或侧栏 TAB 后整排按钮上移。
@@ -43,7 +43,7 @@ this.app.customCss?.theme === "Border";
 
 切换到其他主题后，插件会移除 class、关闭上拉菜单、隐藏状态栏按钮，并恢复目标主题自己的布局。
 
-在 macOS 上，插件仅在 Border 生效时临时调整 Electron 原生 traffic-light 的 Y 坐标，切换主题或卸载插件时恢复原位置。Windows 和 Linux 的对应对齐完全由限定在 Border 主题下的 CSS 完成。
+在 macOS 上，插件仅在 Border 生效时临时调整 Electron 原生 traffic-light 的 Y 坐标，切换主题或卸载插件时恢复原位置。Windows 的对应垂直对齐完全由限定在 Border 主题下的 CSS 完成，同时保留 Border 原有的按钮宽度和图标布局。
 
 ## 操作
 
@@ -99,7 +99,7 @@ assets/       README 使用的 GIF 演示资源
 - 仅桌面端
 - Border 主题
 
-窗口按钮对齐按平台分别实现：Windows/Linux 使用 Obsidian DOM 选择器；macOS 使用 Electron 的桌面端窗口按钮 API，并在 API 不可用时安全跳过。
+窗口按钮对齐按平台分别实现：Windows 使用 Obsidian DOM 选择器；macOS 使用 Electron 的桌面端窗口按钮 API，并在 API 不可用时安全跳过。
 
 插件依赖 Border 和 Obsidian 桌面端的 DOM 结构，未来主题或 Obsidian 更新后可能需要调整 CSS 选择器。
 

@@ -43,29 +43,15 @@ body.border-theme-compacted-theme:not(.is-mobile) .workspace-tab-header-containe
   height: 32px;
 }
 
-/* Match Windows/Linux window controls to the compact 36px top bar. */
-body.border-theme-compacted-theme:not(.is-mobile):is(.mod-windows, .mod-linux) {
-  --frame-right-space: 108px;
-}
-
-body.border-theme-compacted-theme:not(.is-mobile):is(.mod-windows, .mod-linux).is-hidden-frameless
+/* Match Windows window controls to the compact 36px top bar. */
+body.border-theme-compacted-theme.mod-windows.is-hidden-frameless:not(.is-mobile)
   .titlebar:not(:has(+ .modal))
-  .titlebar-button-container.mod-right {
-  height: 36px;
-  align-items: center;
-}
-
-body.border-theme-compacted-theme:not(.is-mobile):is(.mod-windows, .mod-linux).is-hidden-frameless
+  .titlebar-button-container.mod-right,
+body.border-theme-compacted-theme.mod-windows.is-hidden-frameless:not(.is-mobile)
   .titlebar:not(:has(+ .modal))
   .titlebar-button-container.mod-right
   .titlebar-button {
-  display: flex;
-  box-sizing: border-box;
-  width: 36px;
   height: 36px;
-  padding: 0;
-  align-items: center;
-  justify-content: center;
 }
 
 body.border-theme-compacted-theme:not(.is-mobile) .mod-root .workspace-tab-header-container-inner,
