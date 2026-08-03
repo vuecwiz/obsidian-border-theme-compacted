@@ -1,0 +1,220 @@
+/*
+ * Border Theme Compacted
+ *
+ * Every rule is scoped to a class maintained by the plugin. The class only
+ * exists while Obsidian's active community theme is Border.
+ */
+
+body.border-theme-compacted-theme:not(.is-mobile) .workspace {
+  margin-right: 4px;
+}
+
+/* Prevent Border's delayed card-shadow resize from flashing around the Ribbon. */
+body.border-theme-compacted-theme:not(.is-mobile) .workspace::before {
+  transition: none;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile):not(.show-ribbon) .workspace {
+  margin-left: 4px;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile).is-popout-window .workspace {
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile) .workspace-ribbon.side-dock-ribbon.mod-left {
+  --ribbon-width: 36px;
+  margin-top: 36px;
+  padding: 2px 0 0;
+  gap: 4px;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile)
+  .workspace-ribbon.mod-left
+  .side-dock-ribbon-action {
+  width: 32px;
+  height: 32px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile) .workspace-tab-header-container {
+  height: 32px;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile) .mod-root .workspace-tab-header-container-inner,
+body.border-theme-compacted-theme:not(.is-mobile)
+  :is(.mod-left-split, .mod-right-split)
+  .workspace-tab-header-container
+  .workspace-tab-header-container-inner {
+  height: 36px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  align-items: center;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile) .sidebar-toggle-button {
+  box-sizing: border-box;
+  height: 36px;
+  padding: 2px 0;
+  align-items: center;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile) .sidebar-toggle-button .clickable-icon {
+  width: 32px;
+  height: 32px;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile)
+  .mod-root
+  :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab) {
+  box-sizing: border-box;
+  height: 36px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  align-items: center;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile)
+  .mod-root
+  :is(.workspace-tab-header-tab-list, .workspace-tab-header-new-tab)
+  .clickable-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Keep tab rows stable when drag auto-scrolling changes scrollTop. */
+body.border-theme-compacted-theme:not(.is-mobile)
+  .mod-root
+  .workspace-tab-header-container-inner
+  > .workspace-tab-header,
+body.border-theme-compacted-theme:not(.is-mobile)
+  :is(.mod-left-split, .mod-right-split)
+  .workspace-tab-header-container-inner
+  > .workspace-tab-header {
+  position: sticky;
+  top: 0;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile) .workspace .mod-root .workspace-tab-header {
+  height: 32px;
+  padding: 0 3px 0 0;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile) .mod-root .workspace-tab-header-inner {
+  height: 32px;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile).mod-macos.is-hidden-frameless:not(.is-fullscreen)
+  .workspace-tabs.mod-top-left-space
+  .workspace-tab-header-container {
+  padding-left: 76px;
+}
+
+body.border-theme-compacted-theme:not(.is-mobile)
+  .workspace-tabs:not(.mod-stacked)
+  .workspace-tab-header.is-active
+  .workspace-tab-header-inner::before {
+  top: 27px;
+}
+
+.border-theme-compacted-status {
+  display: none;
+}
+
+body.border-theme-compacted-theme .border-theme-compacted-status {
+  position: fixed;
+  left: 4px;
+  bottom: 0;
+  z-index: var(--layer-status-bar, 15);
+  display: flex;
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-s);
+  color: var(--text-muted);
+  cursor: var(--cursor);
+}
+
+body.border-theme-compacted-theme .border-theme-compacted-status:hover,
+body.border-theme-compacted-theme .border-theme-compacted-status:focus-visible {
+  color: var(--text-normal);
+  background-color: var(--background-modifier-hover);
+}
+
+.border-theme-compacted-status > svg {
+  width: 16px;
+  height: 16px;
+}
+
+.border-theme-compacted-popover {
+  position: fixed;
+  left: 4px;
+  bottom: 24px;
+  z-index: var(--layer-menu, 1000);
+  display: flex;
+  box-sizing: border-box;
+  width: min(320px, calc(100vw - 8px));
+  max-height: min(55vh, 520px);
+  padding: 4px;
+  flex-direction: column;
+  overflow-y: auto;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-primary);
+  box-shadow: var(--shadow-l);
+}
+
+body.border-theme-compacted-theme .border-theme-compacted-item {
+  display: flex;
+  width: 100%;
+  min-height: 36px;
+  margin: 0;
+  padding: 6px 10px;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  border: 0;
+  border-radius: var(--radius-s);
+  color: var(--text-normal);
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+  cursor: var(--cursor);
+}
+
+body.border-theme-compacted-theme .border-theme-compacted-item:hover,
+body.border-theme-compacted-theme .border-theme-compacted-item:focus-visible {
+  background: var(--background-modifier-hover);
+}
+
+.border-theme-compacted-item-icon {
+  display: flex;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  align-items: center;
+  justify-content: center;
+}
+
+.border-theme-compacted-item-icon > svg {
+  width: 18px;
+  height: 18px;
+}
+
+.border-theme-compacted-item-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.border-theme-compacted-empty {
+  padding: 8px;
+  color: var(--text-muted);
+}
